@@ -27,12 +27,16 @@ def initialize_git():
     run_command(f'git commit -m "{commit_message}"')
     print("Git repository initialized and changes committed.")
 
-def push_to_github():
+def push_to_github(repo_name):
     """Push the local repository to GitHub."""
+    print("Setting remote repository URL...")
+    # Set the remote repository URL
+    run_command(f"git remote add origin https://github.com/dev23-extremis/{repo_name}.git")
     print("Pushing code to GitHub...")
     run_command("git branch -M main")
     run_command("git push -u origin main")
     print("Code pushed to GitHub successfully!")
+
 
 def generate_summary():
     """Generate a summary of the Git log and save it to a file."""
@@ -54,7 +58,7 @@ def main():
         initialize_git()
 
         # Step 3: Push code to GitHub
-        push_to_github()
+        push_to_github(repo_name)
 
         # Step 4: Generate a summary of work
         generate_summary()
