@@ -117,6 +117,14 @@ def initialize_git():
 def push_to_github(repo_name):
     """Push the local repository to GitHub."""
     print("Setting remote repository URL...")
+
+    # Check if remote 'origin' already exists and remove it
+    try:
+        run_command("git remote remove origin")
+        print("Removed existing 'origin' remote.")
+    except Exception as e:
+        print(f"No 'origin' remote found: {e}")
+
     # Set the remote repository URL
     run_command(f"git remote add origin https://github.com/dev23-extremis/{repo_name}.git")
     print("Pushing code to GitHub...")
@@ -158,6 +166,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
